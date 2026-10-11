@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Complaint Registration & Tracking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">CC</div>
+    <div class="brand-copy">
+      <h1>CivicConnect</h1>
+      <p>Public Complaint Registration & Tracking System</p>
+    </div>
+    <span class="header-tag">Citizen Portal</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR VOICE. YOUR COMMUNITY.</p>
+        <h2>Report an issue.<br><span>Make a difference.</span></h2>
+        <p class="hero-text">Register civic complaints and track their progress in one simple place.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle"></div>
+        <div class="art-card card-one">✓ <span>Complaint received</span></div>
+        <div class="art-card card-two">↗ <span>Progress updates</span></div>
+        <div class="art-building">⌂</div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Complaint summary">
+      <article class="stat-card"><span class="stat-icon purple">▤</span><div><p>Total complaints</p><strong id="totalCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon orange">◷</span><div><p>Pending</p><strong id="pendingCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon green">✓</span><div><p>Resolved</p><strong id="resolvedCount">0</strong></div></article>
+    </section>
+
+    <div class="content-grid">
+      <section class="panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">GET STARTED</p><h3>Register a complaint</h3></div>
+          <span class="step-badge">01</span>
+        </div>
+        <p class="muted">Fill in the details below. Fields marked with * are required.</p>
+        <form id="complaintForm">
+          <div class="form-row">
+            <label for="fullName">Full name *</label>
+            <input id="fullName" name="fullName" type="text" placeholder="Enter your name" required maxlength="80">
+          </div>
+          <div class="form-row two-col">
+            <div><label for="email">Email address *</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+            <div><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" placeholder="Optional" maxlength="20"></div>
+          </div>
+          <div class="form-row two-col">
+            <div>
+              <label for="category">Complaint category *</label>
+              <select id="category" name="category" required>
+                <option value="">Select category</option>
+                <option>Road and potholes</option><option>Water supply</option><option>Street lights</option>
+                <option>Garbage and sanitation</option><option>Drainage</option><option>Public safety</option><option>Other</option>
+              </select>
+            </div>
+            <div><label for="location">Location / area *</label><input id="location" name="location" type="text" placeholder="Street, area or landmark" required maxlength="120"></div>
+          </div>
+          <div class="form-row"><label for="subject">Complaint title *</label><input id="subject" name="subject" type="text" placeholder="Briefly describe the issue" required maxlength="120"></div>
+          <div class="form-row"><label for="description">Complaint details *</label><textarea id="description" name="description" rows="4" placeholder="Explain the issue and where it happened..." required maxlength="1200"></textarea></div>
+          <button class="btn btn-primary" type="submit">Submit complaint <span aria-hidden="true">→</span></button>
+          <p class="form-note">Demo only: your sample complaints are saved in this browser, not sent to a government office.</p>
+        </form>
+      </section>
+
+      <section class="panel tracking-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">STAY INFORMED</p><h3>Track a complaint</h3></div>
+          <span class="step-badge">02</span>
+        </div>
+        <p class="muted">Enter your complaint reference number to check its current status.</p>
+        <form id="trackForm" class="track-form">
+          <label for="trackingId">Complaint reference ID</label>
+          <div class="track-input-row"><input id="trackingId" type="text" placeholder="e.g. CC-123456" required><button class="btn btn-dark" type="submit">Track</button></div>
+        </form>
+        <div id="trackingResult" class="tracking-result empty-state">
+          <div class="empty-icon">⌕</div>
+          <strong>Your status will appear here</strong>
+          <p>Submit a complaint or enter an existing reference ID.</p>
+        </div>
+        <div class="help-card">
+          <div class="help-icon">i</div>
+          <div><strong>Need help?</strong><p>Keep your reference ID safe so you can check updates later.</p></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel complaints-panel">
+      <div class="section-heading list-heading">
+        <div><p class="eyebrow">RECENT ACTIVITY</p><h3>Complaint records</h3></div>
+        <div class="list-actions">
+          <select id="statusFilter" aria-label="Filter complaints by status"><option value="All">All statuses</option><option>Submitted</option><option>In Progress</option><option>Resolved</option></select>
+          <button id="clearDemo" class="btn btn-outline" type="button">Clear demo data</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Reference ID</th><th>Complaint</th><th>Category</th><th>Date submitted</th><th>Status</th></tr></thead>
+          <tbody id="complaintsTable"><tr class="table-empty"><td colspan="5">No complaints registered yet. Use the form above to add one.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <footer><span>© 2026 CivicConnect · Student project demo</span><span>Accessible civic services for everyone</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
